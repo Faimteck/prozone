@@ -1,0 +1,45 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-6">
+        <div class="logo text-center">
+          <a href="https://www.creative-tim.com" class="simple-text">
+            <div class="logo-img">
+              <img src="assets/img/logo.png" />
+            </div>
+          </a>
+        </div>
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Login</h4>
+            <!-- <p class="card-category">Complete your profile</p> -->
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Enter the username or email" [(ngModel)]="username" name="username">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                  <mat-form-field class="example-full-width">
+                    <input type="password" matInput placeholder="Enter the Password" [(ngModel)]="password" name="password">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2"></div>
+              </div>
+              <a mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="login()">Login</a>
+              <a class="forget-password text-danger">Forget Password</a>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

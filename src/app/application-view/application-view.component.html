@@ -1,0 +1,180 @@
+<div class="main-content">
+  <div class="container-fluid" *ngIf="applicationData">
+    <div class="row">
+      <div class="col-md-10"></div>
+      <div class="col-md-2">
+        <i class="material-icons cursor-pointer" title="Print" style="font-size: 40px; float: right;" (click)="print()">print</i> </div>
+
+    </div>
+    <div class="row" id="content" #content>
+      <h3 class="document-title">Prozone-{{applicationId}} </h3>
+      <div class="col-md-12">
+        
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Contact Details</h4>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="row" *ngFor="let applicationData of applicationData">
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Your Name" value="{{applicationData.name}}" readonly>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Mobile number" value="{{applicationData.contact_no}}" readonly>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Email" type="email" value={{applicationData.contact_email}} readonly>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <textarea matInput placeholder="Location" value="P.O. Box 3625 Sheikh Khalifa Bin Saeed Street Dubai P.O. Box 901 Abu Dhabi" readonly></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Licensing Information</h4>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="row" *ngFor="let applicationData of applicationData">
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Category" value="{{applicationData.categoryName}}" readonly>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Sub category" value="{{applicationData.subCategoryName}}" readonly>
+                  </mat-form-field>
+                </div>     
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Licensing location" value="{{applicationData.licensing_location}}" readonly>
+                  </mat-form-field>
+                </div>  
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Licensing type" value="{{applicationData.licensing_type}}" readonly>
+                  </mat-form-field>
+                </div>  
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Legal type" value="{{applicationData.legal_type}}" readonly>
+                  </mat-form-field>
+                </div> 
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Duration" value="{{applicationData.duration}}" readonly>
+                  </mat-form-field>
+                </div> 
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Service Details" value="{{applicationData.service_details}}" readonly>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Details" value="{{applicationData.details}}" readonly>
+                  </mat-form-field>
+                </div>  
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Required Documents" value="Trade Name & Activities" readonly>
+                  </mat-form-field>
+                </div>     
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Express delivery" value="Yes" readonly>
+                  </mat-form-field>
+                </div>           
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Documents</h4>
+          </div>
+          <div class="card-body">
+            <div class="document document1">
+              <a href="assets/img/document1.png" target="_blank"><img src="assets/img/document1.png"></a>
+              <p class="font-weight-bold text-center">Passport</p>
+            </div>
+            <div class="document document2">
+              <a href="assets/img/document2.png" target="_blank"><img src="assets/img/document2.png"></a>
+              <p class="font-weight-bold text-center">Visa</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Status</h4>
+          </div>
+          <div class="card-body">
+              <div class="row" *ngFor="let applicationData of applicationData">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Status</mat-label>
+                    <mat-select (selectionChange)="changeStatus($event)">
+                      <mat-option *ngFor="let sta of status" [value]="sta.id">
+                        {{sta.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <textarea matInput placeholder="Comments" [(ngModel)]="statusComments"></textarea>
+                  </mat-form-field>
+                </div>
+                <button mat-raised-button type="submit" (click)="save()" class="btn btn-danger pull-right ml-3">
+                  <span >Save</span>
+                </button>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Status Histories</h4>
+          </div>
+          <div class="card-body" *ngIf="statusHistory&&statusHistory.length>0">
+            <div class="alert alert alert-info notification-panel" *ngFor="let st of statusHistory">
+              <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="material-icons">close</i>
+              </button>
+              <span data-notify="message">{{st.status|uppercase}} - {{st.comments}}</span>
+              <span data-notify="message">Updated At {{st.modifiedAt|date:'MM-dd-yyyy HH:MM'}}</span>
+            </div>
+          </div>
+          <div class="card-body" *ngIf="!statusHistory||statusHistory.length==0">
+            <p>No status found</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid" *ngIf="!applicationData">
+    <p>No applications found</p>
+  </div>
+</div>

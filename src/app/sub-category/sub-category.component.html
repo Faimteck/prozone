@@ -1,0 +1,135 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title" *ngIf="!subcategoryid">Add Sub Category</h4>
+                        <h4 class="card-title" *ngIf="subcategoryid">Edit Sub Category</h4>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="subCategory" (ngSubmit)="saveForm()">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Name in English" formControlName="name_english"
+                                            [required]="true">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Name in Arabic" formControlName="name_arabic">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Category</mat-label>
+                                        <mat-select formControlName="parent_category" [required]="true">
+                                            <mat-option *ngFor="let cat of categories" [value]="cat._id">
+                                                {{cat.name_english}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Sequence" type="number" formControlName="sequence"
+                                            [required]="true">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="cb-wrapper cb-vertival">
+                                        <mat-checkbox formControlName="individual">Individual</mat-checkbox>
+                                        <mat-checkbox formControlName="business" class="ml-3">Business</mat-checkbox>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="button" class="icon-btn" md-button (click)="imgFileInput.click()">Icon
+                                        Upload</button>
+                                    <input hidden type="file" #imgFileInput (change)="onFileChange($event)" />
+                                    <span class="ml-2" *ngIf="getFileName()" [innerHtml]="getFileName()"></span>
+                                </div>
+                            </div>
+                            <button mat-raised-button type="submit" class="btn btn-danger pull-right"
+                                [disabled]="subCategory.invalid">
+                                <span *ngIf="!subcategoryid">Save</span>
+                                <span *ngIf="subcategoryid">Update</span>
+                            </button>
+                            <button mat-raised-button (click)="cancel()" *ngIf="subcategoryid"
+                                class="btn btn-danger pull-right" [disabled]="subCategory.invalid">Cancel</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Sub Category List</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="mat-elevation-z8">
+                                <table mat-table [dataSource]="dataSource" matSort matSortStart="desc">
+                                    <ng-container matColumnDef="name">
+                                        <th mat-header-cell *matHeaderCellDef> Name
+                                            <div>
+                                                <mat-form-field>
+                                                    <input matInput class="form-field" placeholder="Name Filter">
+                                                </mat-form-field>
+                                            </div>
+                                        </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="name_english">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name in English </th>
+                                        <td mat-cell *matCellDef="let element"> <span class="clickable-field"
+                                                (click)="viewElement(element)">{{element.name_english}}</span></td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="name_arabic">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name in Arabic </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.name_arabic}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="category_name">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <span *ngIf="element.parent_categories&&element.parent_categories[0]">{{element.parent_categories[0].name_english}}</span> </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="icon">
+                                        <th mat-header-cell *matHeaderCellDef> Icon </th>
+                                        <td mat-cell *matCellDef="let element" class="p5"> <img src="{{baseUrl}}{{element.icon}}" width="50" height="50"> </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="sequence">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Sequence </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.sequence}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="individual">
+                                        <th mat-header-cell *matHeaderCellDef> Individual</th>
+                                        <td mat-cell *matCellDef="let element"> {{element.individual|setBoolean}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="business">
+                                        <th mat-header-cell *matHeaderCellDef> Business </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.business|setBoolean}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="delete">
+                                        <th mat-header-cell *matHeaderCellDef> Delete </th>
+                                        <td mat-cell *matCellDef="let element; let i = index"> <i
+                                                class="material-icons cursor-pointer"
+                                                (click)="delete(element._id, i)">delete</i> </td>
+                                    </ng-container>
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                </table>
+                                <ng-container *ngIf="!dataSource || dataSource.data.length == 0">
+                                    <p class="text-center mt-2">No Records found.</p>
+                                </ng-container>
+                                <mat-paginator [pageSizeOptions]="pageSizeOptions" showFirstLastButtons></mat-paginator>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="show-loader" *ngIf="showLoader"></div>

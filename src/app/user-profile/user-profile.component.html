@@ -1,0 +1,100 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <h3 class="document-title">User - USERJOHN1000</h3>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Contact Details</h4>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Your Name" value="John" readonly>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Mobile number" value="+95 123 456 789" readonly>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Email" type="email" value="john@yahoo.com" readonly>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <textarea matInput placeholder="Location"
+                      value="P.O. Box 3625 Sheikh Khalifa Bin Saeed Street Dubai P.O. Box 901 Abu Dhabi"
+                      readonly></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title ">Applications</h4>
+            <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
+          </div>
+          <div class="card-body applications">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="text-logo">
+                  <th>Application Id</th>
+                  <th>Category</th>
+                  <th>Sub Category</th>
+                  <th>Datetime</th>
+                  <th>Mobile</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                  <th>
+                    View
+                  </th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a routerLink="/application-view">Application 1</a></td>
+                    <td>Category 1</td>
+                    <td>Sub Category 1</td>
+                    <td>June 20, 2020 5.30pm</td>
+                    <td>0987654123</td>
+                    <td>john@yahoo.com</td>
+                    <td class="text-warning">Pending</td>
+                    <td><i class="material-icons" routerLink="/application-view">preview</i></td>
+                  </tr>
+                  <tr>
+                    <td><a routerLink="/application-view">Application 2</a></td>
+                    <td>Category 2</td>
+                    <td>Sub Category 1</td>
+                    <td>August 20, 2020 5.30pm</td>
+                    <td>0987654123</td>
+                    <td>ken@yahoo.com</td>
+                    <td class="text-danger">Rejected</td>
+                    <td><i class="material-icons" routerLink="/application-view">preview</i></td>
+                  </tr>
+                  <tr>
+                    <td><a routerLink="/application-view">Application 3</a></td>
+                    <td>Category 1</td>
+                    <td>Sub Category 1</td>
+                    <td>July 20, 2020 5.30pm</td>
+                    <td>0987654123</td>
+                    <td>jane@yahoo.com</td>
+                    <td class="text-success">Completed</td>
+                    <td><i class="material-icons" routerLink="/application-view">preview</i></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

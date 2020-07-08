@@ -1,0 +1,174 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '../node_modules/@syncfusion/ej2-base/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-buttons/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-inputs/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-lists/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-calendars/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-angular-calendars/styles/material.css';
+@import '../node_modules/ngx-toastr/toastr.css';
+.sidebar .logo-img img {
+    width: 120px !important;
+    top: 0px !important;
+    position: absolute;
+}
+
+.document {
+    width: 150px;
+    float: left;
+}
+
+.document img {
+    width: 100%;
+}
+
+.document2 {
+    margin-left: 10px;
+}
+
+.applications i {
+    cursor: pointer;
+}
+
+.document-title {
+    margin-left: 15px;
+    color: #de3232;
+}
+
+.text-logo, .applications a {
+    color: #355b9c;
+}
+
+.applications a {
+    text-decoration: underline;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.navigation-menu .dropdown-item {
+    border: #dcd9d9 1px solid !important;
+    margin-top: 2px !important;
+}
+
+.navigation-menu .dropdown-item:hover {
+    background: #d4282e !important;
+}
+
+.navigation-menu .view-all {
+    border: #dcd9d9 1px solid !important;
+    text-align: center !important;
+    background: #d4282e !important;
+    color: #ffffff !important;
+    text-align: center !important;
+    display: block !important;
+}
+
+.notification-panel {
+    background: #f5f2f2 !important;
+    color: #072048 !important;
+    border: 1px solid #f3f3f3 !important;
+    box-shadow: none !important;
+}
+
+.form-group.required .control-label:after {
+    content: "*";
+    color: #d4282e;
+}
+
+.icon-btn {
+    background: #2877f10d;
+    border: 1px solid #d1e3fd;
+}
+
+.mat-table {
+    width: 100%;
+}
+
+.mat-header-cell {
+    color: #31599B;
+    font-size: .95rem;
+    font-weight: 500;
+    border-top-width: 0;
+    border-bottom-width: 1px !important;
+    vertical-align: bottom;
+    border-bottom: 2px solid rgba(0, 0, 0, .06);
+    padding: .75rem !important;
+}
+
+td.mat-cell {
+    padding-left: 10px !important;
+}
+
+td.mat-cell:first-of-type {
+    padding-left: 14px !important;
+}
+
+.mat-checkbox-label {
+    color: #333333;
+}
+
+.clickable-field {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #31599B;
+}
+
+#show-loader {
+    position:fixed;
+    width:100%;
+    left:0;right:0;top:0;bottom:0;
+    background-color: rgba(255,255,255,0.7);
+    z-index:9999;
+    display:block;
+}
+
+@-webkit-keyframes spin {
+	from {-webkit-transform:rotate(0deg);}
+	to {-webkit-transform:rotate(360deg);}
+}
+
+@keyframes spin {
+	from {transform:rotate(0deg);}
+	to {transform:rotate(360deg);}
+}
+
+#show-loader::after {
+    content:'';
+    display:block;
+    position:absolute;
+    left:48%;top:40%;
+    width:40px;height:40px;
+    border-style:solid;
+    border-color:#d4282e;
+    border-top-color:transparent;
+    border-width: 4px;
+    border-radius:50%;
+    -webkit-animation: spin .8s linear infinite;
+    animation: spin .8s linear infinite;
+}
+.no-records{
+    color: #555556;;
+}
+.p5{
+    padding: 5px !important;
+}
+.readed{
+    background: #d0ffd2 !important;
+}
+.forget-password{
+    text-decoration: underline !important;
+    float: right;
+    margin-top: 14px;
+    margin-right: 10px;
+}
+.cdk-overlay-container {
+    position: fixed;
+    z-index: 999999999999999999999;
+}
+.main-panel .main-content {
+    margin-top: 50px !important;
+}

@@ -1,0 +1,128 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title ">Manage Applications</h4>
+            <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
+          </div>
+          <div class="card-body applications">
+            <div class="row">
+              <div class="col-md-2">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Status</mat-label>
+                  <mat-select>
+                    <mat-option *ngFor="let sta of status" [value]="sta.name">
+                      {{sta.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-2">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Type</mat-label>
+                  <mat-select>
+                    <mat-option *ngFor="let type of types" [value]="type.name">
+                      {{type.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-2">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Category</mat-label>
+                  <mat-select>
+                    <mat-option *ngFor="let category of categories" [value]="category.id">
+                      {{category.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-2">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Sub Category</mat-label>
+                  <mat-select>
+                    <mat-option *ngFor="let category of subcategories" [value]="category.id">
+                      {{category.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-2">
+                <mat-form-field>
+                  <mat-label>Start date</mat-label>
+                  <input matInput [matDatepicker]="picker1">
+                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-md-2">
+                <mat-form-field>
+                  <mat-label>End date</mat-label>
+                  <input matInput [matDatepicker]="picker2">
+                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                  <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="text-logo">
+                  <th>Application Id</th>
+                  <th>Category</th>
+                  <th>Sub Category</th>
+                  <th>Datetime</th>
+                  <th>Applicant Name</th>
+                  <th>Mobile</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                </thead>
+                <tbody *ngIf="applicationData?.length>0">
+                  <tr *ngFor="let application of applicationData">
+                    <!-- <td><a routerLink="/application-view" target="_blank" >{{application._id}}</a></td> -->
+                    <td><a (click)="selectApplication(application._id)">Prozone-{{application._id}}</a></td>
+                    <td>{{application.categoryName}}</td>
+                    <td>{{application.subCategoryName}}</td>
+                    <td>{{application.modifiedAt | date}}</td>
+                    <td>{{application.applicationName}}</td>
+                    <td>{{application.contact_no}}</td>
+                    <td>{{application.contact_email}}</td>
+                    <td class="text-warning" [innerHtml]="getStatus(application.status)"></td>
+                  </tr>
+                </tbody> 
+                <tbody *ngIf="applicationData?.length==0">
+                  <tr>
+                      <td [attr.colspan]="8">
+                          <p>No Data Found</p>
+                      </td>
+                  </tr>
+              </tbody>
+              </table>
+
+              <!-- <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource" matSort matSortStart="desc">
+                  <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                    <td mat-cell *matCellDef="let element"> <span class="clickable-field"
+                        >{{element.email}}</span></td>
+                  </ng-container>
+                  <ng-container matColumnDef="mobile">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Mobile </th>
+                    <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <ng-container *ngIf="!dataSource || dataSource.data.length == 0">
+                  <p class="text-center mt-2">No Records found.</p>
+                </ng-container>
+                <mat-paginator [pageSizeOptions]="pageSizeOptions" showFirstLastButtons></mat-paginator>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

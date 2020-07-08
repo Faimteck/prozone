@@ -1,0 +1,74 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title" *ngIf="!categoryId">Add Push Notification</h4>
+            <h4 class="card-title" *ngIf="categoryId">Edit Push Notification</h4>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="events" (ngSubmit)="saveForm()">
+              <div class="row">
+                <div class="col-md-6">
+                  <button type="button" class="icon-btn" md-button (click)="imgFileInput.click()">Icon
+                    Upload</button>
+                  <input hidden type="file" #imgFileInput (change)="onFileChange($event)" />
+                  <span class="ml-2" *ngIf="getFileName()" [innerHtml]="getFileName()"></span>
+                </div>
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <textarea matInput formControlName="comments" placeholder="Comments" [required]="true"></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <button mat-raised-button type="submit" class="btn btn-danger pull-right">
+                <span *ngIf="!eventId">Save</span>
+                <span *ngIf="eventId">Update</span>
+              </button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title ">Push Notifications List</h4>
+            <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource" matSort matSortStart="desc">
+                  <ng-container matColumnDef="icon">
+                    <th mat-header-cell *matHeaderCellDef> Icon </th>
+                    <td mat-cell *matCellDef="let element" class="p5"> <img src="{{baseUrl}}{{element.icon}}" width="50"
+                      height="50"> </td>
+                  </ng-container>
+                  <ng-container matColumnDef="comments">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Comments </th>
+                    <td mat-cell *matCellDef="let element"> <span class="clickable-field"
+                      (click)="viewElement(element)">{{element.comments}}</span> </td>
+                  </ng-container>
+                  <ng-container matColumnDef="delete">
+                    <th mat-header-cell *matHeaderCellDef> Delete </th>
+                    <td mat-cell *matCellDef="let element; let i = index"> <i class="material-icons cursor-pointer"
+                        (click)="delete(element._id, i)">delete</i> </td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <ng-container *ngIf="!dataSource || dataSource.data.length == 0">
+                  <p class="text-center mt-2">No Records found.</p>
+                </ng-container>
+                <mat-paginator [pageSizeOptions]="pageSizeOptions" showFirstLastButtons></mat-paginator>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="show-loader" *ngIf="showLoader"></div>
